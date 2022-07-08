@@ -62,9 +62,27 @@ function addToDo(event) {
 
         // CLearing the input;
         toDoInput.value = '';
+
+        // delete right away
+        setTimeout(deleteOnLoad, 1000, newToDo)
     }
 
-}   
+}
+
+
+function deleteOnLoad(item){
+    //console.log(event.target);
+    //const item = event.target;
+    // animation
+    item.parentElement.classList.add("fall");
+
+    //removing local todos;
+    removeLocalTodos(item.parentElement);
+
+    item.parentElement.addEventListener('transitionend', function(){
+        item.parentElement.remove();
+    })
+}
 
 
 function deletecheck(event){
